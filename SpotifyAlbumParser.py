@@ -25,7 +25,7 @@ while addAlbum == "y":
 
     sp = spotipy.Spotify(auth=token)
     album = sp.album(urn)
-    #pprint.pprint(album) #ppint is used to format the json returned by the spotify api, enable this to view raw data
+    #pprint.pprint(album) #pprint is used to format the json returned by the spotify api, enable this to view raw data
     
     newdump = json.dumps(album)
     parsed_json = json.loads(newdump)
