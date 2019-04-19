@@ -1,13 +1,11 @@
 # shows album info for a URN or URL
-# Austin Bailey 19/04/19
-# really poorly coded but I needed it to work
-# authenticates with spotify api to pull and parse album info
+# Austin0 19/04/19
 
 import spotipy
 import sys
 import spotipy.util as util
 import json
-import pprint
+#import pprint
 
 artist_name = ""
 addAlbum = "y"
@@ -18,16 +16,16 @@ if len(sys.argv) > 1:
 else:
     urn = 'spotify:album:2T6jeELx5BqH4GMLObBy10'
 
-username = "evolvespotify60@grr.la"
+username = "*/ENTER SPOTIFY USERNAME HERE/*" # your spotify username will be the email address you use to log in.
 scope = "user-library-read"
 
-token = util.prompt_for_user_token(username,scope,client_id='c85eb119fa4c4cbd8a55fd7612c6a737',client_secret='226a8e8461eb470cbc53c0bb545a62cc',redirect_uri='http://localhost/')
+token = util.prompt_for_user_token(username,scope,client_id='*/ENTER  CLIENT ID HERE/*',client_secret='*/ENTER SECRET CLIENT KEY HERE/*',redirect_uri='http://localhost/') # your spotify client keys can be retrieved from the developer.spotify.com page
 
 while addAlbum == "y":
 
     sp = spotipy.Spotify(auth=token)
     album = sp.album(urn)
-    #pprint.pprint(album)
+    #pprint.pprint(album) #ppint is used to format the json returned by the spotify api, enable this to view raw data
     
     newdump = json.dumps(album)
     parsed_json = json.loads(newdump)
@@ -45,8 +43,8 @@ while addAlbum == "y":
         artist_name = (i['name'])
     print(parsed_json['genres'])
     
-    sqlString += ("INSERT INTO album(name, release_date, type, genre, track_count) VALUES({}, {}, {}, {}, {});\n".format(parsed_json['name'], parsed_json['release_date'], parsed_json['album_type'], parsed_json['genres'], parsed_json['total_tracks']))
-    sqlString += ("INSERT INTO artist(name) VALUES({});\n".format(artist_name))
+    sqlString += ("INSERT INTO album(name, release_date, type, genre, track_count) VALUES('{}', '{}', '{}', '{}', {});\n".format(parsed_json['name'], parsed_json['release_date'], parsed_json['album_type'], parsed_json['genres'], parsed_json['total_tracks']))
+    sqlString += ("INSERT INTO artist(name) VALUES('{}');\n".format(artist_name))
     
     addAlbum = str(input("Add another album? y/n?\n"))
     if addAlbum != "y":
