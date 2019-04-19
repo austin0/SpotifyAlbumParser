@@ -31,8 +31,6 @@ while addAlbum == "y":
     parsed_json = json.loads(newdump)
     artistdump= json.dumps(parsed_json['artists'])
     artist_json = json.loads(artistdump)
-    genredump= json.dumps(parsed_json['artists'])
-    genre_json = json.loads(artistdump)
     
     print(parsed_json['name'])
     print(parsed_json['album_type'])
