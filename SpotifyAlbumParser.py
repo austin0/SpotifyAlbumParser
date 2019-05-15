@@ -29,7 +29,7 @@ while addAlbum == "y":
     
     newdump = json.dumps(album)
     parsed_json = json.loads(newdump)
-    artistdump= json.dumps(parsed_json['artists'])
+    artistdump = json.dumps(parsed_json['artists'])
     artist_json = json.loads(artistdump)
     
     print(parsed_json['name'])
