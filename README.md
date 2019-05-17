@@ -1,6 +1,6 @@
 ### SpotifyAlbumParser
 
-This script uses the Spotify API and Spotipy repository to pull info about a selected album from Spotify servers and then parse it into PostGreSQL form for insertion into a database.
+This script uses the Spotify API and Spotipy repository to pull info about a selected album from Spotify servers and then parse it into PostgreSQL form for insertion into a database.
 
 ### Requirements
 
